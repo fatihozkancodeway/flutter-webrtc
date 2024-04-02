@@ -26,9 +26,7 @@ class RTCVideoView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) =>
-            _buildVideoView(context, constraints));
+    return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) => _buildVideoView(context, constraints));
   }
 
   Widget _buildVideoView(BuildContext context, BoxConstraints constraints) {
@@ -38,16 +36,13 @@ class RTCVideoView extends StatelessWidget {
         height: constraints.maxHeight,
         child: FittedBox(
           clipBehavior: Clip.hardEdge,
-          fit: objectFit == RTCVideoViewObjectFit.RTCVideoViewObjectFitContain
-              ? BoxFit.contain
-              : BoxFit.cover,
+          fit: objectFit == RTCVideoViewObjectFit.RTCVideoViewObjectFitContain ? BoxFit.contain : BoxFit.cover,
           child: Center(
             child: ValueListenableBuilder<RTCVideoValue>(
               valueListenable: videoRenderer,
-              builder:
-                  (BuildContext context, RTCVideoValue value, Widget? child) {
+              builder: (BuildContext context, RTCVideoValue value, Widget? child) {
                 return SizedBox(
-                  width: constraints.maxHeight * value.aspectRatio,
+                  width: constraints.maxWidth,
                   height: constraints.maxHeight,
                   child: child,
                 );
